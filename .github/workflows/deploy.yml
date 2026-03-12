@@ -11,31 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Fix Vite permissions (CI issue fix)
       - name: Fix vite permissions
         run: chmod +x node_modules/.bin/vite
 
-      # 5️⃣ Build the project
       - name: Build project
         run: npm run build
 
-      # 6️⃣ Deploy build files to S3
       - name: Deploy to S3
-        uses: uses: jakejarvis/s3-sync-action@v0.5.1
+        uses: jakejarvis/s3-sync-action@v0.5.1
         with:
           args: --delete
         env:
@@ -45,7 +39,6 @@ jobs:
           AWS_REGION: ap-south-1
           SOURCE_DIR: ./dist
 
-      # 7️⃣ Invalidate CloudFront cache automatically
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
