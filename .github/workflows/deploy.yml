@@ -1,20 +1,20 @@
-name: Deploy to AWS S3
+name: Deploy Website to S3
 
 on:
   push:
     branches:
-      - main
       - master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -22,28 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Fix vite permissions
-        run: chmod +x node_modules/.bin/vite
-
       - name: Build project
         run: npm run build
 
       - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        with:
-          args: --delete
+        run: |
+          aws s3 sync dist/ s3://sarkartech.in --delete
         env:
-          AWS_S3_BUCKET: sarkartech.in
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-          AWS_REGION: ap-south-1
-          SOURCE_DIR: ./dist
+          AWS_DEFAULT_REGION: ap-south-1
 
-      - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v2
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E1RLCH1R4QYPEL \
+            --paths "/*"
         env:
-          DISTRIBUTION: E1RLCH1R4QYPEL
-          PATHS: "/*"
-          AWS_REGION: ap-south-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_DEFAULT_REGION: ap-south-1
