@@ -1,0 +1,17 @@
+.hackathons-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  max-width: 640px;
+}
+
+.hackathons-content p {
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+}
+
+.hackathons-content .btn {
+  margin-top: 0;
+}

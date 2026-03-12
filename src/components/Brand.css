@@ -1,0 +1,32 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  user-select: none;
+}
+
+.brand-mark {
+  height: 34px;
+  width: auto;
+  display: block;
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 2px rgba(0, 212, 170, 0.55),
+    0 0 24px rgba(0, 212, 170, 0.45);
+}
+
+.brand-name {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.brand--hero .brand-mark {
+  height: 56px;
+}
+
+.brand--hero .brand-name {
+  font-size: 1.5rem;
+}
+

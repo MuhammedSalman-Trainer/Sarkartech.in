@@ -1,0 +1,33 @@
+.footer {
+  margin-top: 4rem;
+  padding: 2.5rem 1.5rem;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.footer-tagline {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+.footer-email {
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.footer-email:hover {
+  text-decoration: underline;
+}

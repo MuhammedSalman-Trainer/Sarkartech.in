@@ -1,0 +1,49 @@
+:root {
+  --bg: #0a0b0f;
+  --bg-card: #12141c;
+  --accent: #22e88b;
+  --accent-dim: #16b46b;
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.78);
+  --border: rgba(255, 255, 255, 0.12);
+  --gradient-start: #22e88b;
+  --gradient-end: #f7c948;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-dim);
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}

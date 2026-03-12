@@ -1,0 +1,21 @@
+{
+  "name": "sarkartech-in",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node copy-logo.js && vite",
+    "build": "node copy-logo.js && vite build",
+    "preview": "vite preview",
+    "copy-logo": "node copy-logo.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "^0.34.5",
+    "vite": "^6.0.1"
+  }
+}
