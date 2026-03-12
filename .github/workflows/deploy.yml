@@ -35,7 +35,7 @@ jobs:
 
       # 6️⃣ Deploy build files to S3
       - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
+        uses: uses: jakejarvis/s3-sync-action@v0.5.1
         with:
           args: --delete
         env:

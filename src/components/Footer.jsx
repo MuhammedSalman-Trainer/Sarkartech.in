@@ -9,7 +9,7 @@ export default function Footer() {
           <Brand />
         </div>
         <p className="footer-tagline">
-          Converting cool ideas into useful web applications!
+          Converting cool ideas into useful web applications!!
         </p>
         <a href="mailto:muhammed.salman@sarkartech.in" className="footer-email">
           muhammed.salman@sarkartech.in
