@@ -11,7 +11,7 @@ export default function Header() {
         <a href="#about">About</a>
         <a href="#hackathons">Hackathons</a>
         <a href="#products">Products</a>
-        <a href="#submit-idea">Submit Idea</a>
+        <a href="#submit-idea">Submit Ideas</a>
       </nav>
     </header>
   )
