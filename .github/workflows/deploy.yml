@@ -3,36 +3,45 @@ name: Deploy Website to S3
 on:
   push:
     branches:
-      - master
       - main
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run build
+      # 4️⃣ Fix Vite permission issue
+      - name: Fix vite permission
+        run: chmod +x node_modules/.bin/vite
 
+      # 5️⃣ Build the Vite project
+      - name: Build project
+        run: node node_modules/vite/bin/vite.js build
+
+      # 6️⃣ Deploy build files to S3
       - name: Deploy to S3
-        run: |
-          aws s3 sync dist/ s3://sarkartech.in --delete
+        run: aws s3 sync dist/ s3://sarkartech.in --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
 
+      # 7️⃣ Invalidate CloudFront cache
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
